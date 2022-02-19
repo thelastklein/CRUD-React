@@ -1,22 +1,30 @@
+import {useState} from 'react'
 
+export function AddContact(props) {
+   const [name, setName] = useState('')
+   const [email, setEmail] = useState('')
 
-export function AddContact() {
-    state = {
-        name: "",
-        email:"",
-    }
+const Add = (event) => {
+       event.preventDefault();
+
+       
+       props.addContactHandler(name,email)
+       setName('')
+       setEmail('')
+   }
+
     return (
         <div>
             <h2>Add Client</h2>
-            <form>
+            <form onSubmit={Add}>
                 <div>
                     <label>Nome</label>
                     <input 
                         type="text" 
                         name="name" 
                         placeholder="Nome" 
-                        value={this.state.name} 
-                        onChange={(e)=> this.setState({name: e.target.value})} />
+                        value={name} 
+                        onChange={event => setName(event.target.value)} />
                 </div>
 
                 <div>
@@ -25,8 +33,8 @@ export function AddContact() {
                     type="text" 
                     name="name" 
                     placeholder="Email"
-                    value={this.state.email}
-                    onChange={(e)=> this.setState({email: e.target.value})}/>
+                    value={email}
+                    onChange={event =>setEmail(event.target.value)}/>
                 </div>
                 <button>Add</button>
             </form>

@@ -7,10 +7,19 @@ import {ContactList} from "./components/ContactList/ContactList"
 function App() {
  const [contacts, setContacts] = useState([])
 
+ const addContactHandler = (name,email) => {
+   console.log(name,email)
+   let newContact = {
+     name,
+     email
+   }
+   setContacts([...contacts, newContact])
+ }
+
   return (
     <>
     <Header/>
-    <AddContact/>
+    <AddContact addContactHandler={addContactHandler}/>
     <ContactList contacts={contacts}/>
     </>
   );
